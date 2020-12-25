@@ -1,0 +1,104 @@
+{% extends 'layout/admin.html' %}
+
+
+{% block content %}
+  <div class="text-component text-center margin-bottom-sm">
+    <h1>Новости</h1>
+  </div>
+
+
+  {% if data %}
+    <a class="btn btn--primary" href="/admin/news/new">Создать пост</a>
+
+    <div class="tbl margin-y-sm">
+      <table aria-label="Посты блога" class="tbl__table border-bottom border-2">
+        <thead class="tbl__header border-bottom border-2">
+        <tr class="tbl__row">
+          <th class="tbl__cell text-left" scope="col">
+            <span class="text-xs text-uppercase letter-spacing-lg font-semibold">Изображение</span>
+          </th>
+
+          <th class="tbl__cell text-left" scope="col">
+            <span class="text-xs text-uppercase letter-spacing-lg font-semibold">Заголовок</span>
+          </th>
+
+          <th class="tbl__cell text-left" scope="col">
+            <span class="text-xs text-uppercase letter-spacing-lg font-semibold">Краткое описание</span>
+          </th>
+
+          <th class="tbl__cell text-left" scope="col">
+            <span class="text-xs text-uppercase letter-spacing-lg font-semibold">Категория</span>
+          </th>
+
+          <th class="tbl__cell text-left" scope="col">
+            <span class="text-xs text-uppercase letter-spacing-lg font-semibold">Действия</span>
+          </th>
+
+        </tr>
+        </thead>
+
+        <tbody class="tbl__body">
+        {% for d in data %}
+          <tr class="tbl__row">
+            <td class="tbl__cell" role="cell">
+              <img alt="{{ d.title }}" class="max-width-xxxxs radius-md width-100%"
+                   src="{{ d.image }}">
+            </td>
+
+            <td class="tbl__cell" role="cell">{{ d.title }}</td>
+
+            <td class="tbl__cell" role="cell">{{ d.description }}</td>
+
+            <td class="tbl__cell" role="cell">pass</td>
+
+            <td class="tbl__cell" role="cell">
+              <button aria-controls="menu-news-{{ d.id }}" class="menu-bar__item reset">
+                {{ icons('ellipsis-h', classes='menu-bar__icon') }}
+              </button>
+
+              <menu class="menu js-menu" id="menu-news-{{ d.id }}">
+                <li role="menuitem">
+                  <a class="menu__content js-menu__content" href="/admin/news/edit/{{ d.id }}">
+                    {{ icons('pen', classes='menu__icon') }}
+                    <span>Редактировать</span>
+                  </a>
+                </li>
+
+                <li aria-controls="modal-del-{{ d.id }}" role="menuitem">
+                <span class="menu__content js-menu__content">
+                  {{ icons('trash-alt', classes='menu__icon') }}
+                  <span>Удалить</span>
+                </span>
+                </li>
+
+                <li class="menu__separator" role="separator"></li>
+
+                <li role="menuitem">
+                  <a class="menu__content js-menu__content" href="/news/{{ d.id }}" target="_blank">
+                    {{ icons('external-link-alt', classes='menu__icon') }} Открыть пост
+                  </a>
+                </li>
+              </menu>
+
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% for d in data %}
+      {% call modal('del-' ~ d.id, "Удалить пост в новостях", 'Вы уверены, что хотите удалить пост "' ~ d.title ~ '"?') %}
+        <div class="flex flex-column flex-row@xs gap-xs">
+          <a class="btn btn--primary btn--md width-100%" href="/admin/news/del/{{ d.id }}">Удалить</a>
+          <button class="btn btn--secondary btn--md width-100% js-modal__close" type="reset">Закрыть</button>
+        </div>
+      {% endcall %}
+
+    {% endfor %}
+  {% else %}
+    <h3 class="text-component margin-bottom-sm text-center">Вы ещё не создали ни одного поста</h3>
+  {% endif %}
+
+  <a class="btn btn--primary" href="/admin/news/new">Создать пост</a>
+{% endblock %}

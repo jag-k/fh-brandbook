@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link href="/css/style.css" id="codyframe" rel="stylesheet">
+  {#  browsers not supporting CSS variables  #}
+  <script>if (!('CSS' in window) || !CSS.supports('color', 'var(--color-var)')) {
+    var cfStyle = document.getElementById('codyframe');
+    if (cfStyle) {
+      var href = cfStyle.getAttribute('href');
+      href = href.replace('style.css', 'style-fallback.css');
+      cfStyle.setAttribute('href', href);
+    }
+  }</script>
+  <title>{{ template_title }}</title>
+  <meta content="{{ meta_description }}" name="description">
+</head>
+<body>
+{% from 'layout/components.html' import alert as alert_macro, icons, modal %}
+
+{% if alert_data %}
+  {% set content, type = alert_data.get('content'), alert_data.get('type', 'warning') %}
+  {{ alert_macro(content, type) }}
+{% endif %}
+
+<div class="padding-component hide@md no-js:is-hidden">
+  <button aria-controls="sidebar" class="menu-bar__item reset">{{ icons('bars') }}</button>
+</div>
+
+<div class="flex@md">
+  <aside aria-labelledby="sidebarTitle"
+         class="sidebar sidebar--static@md js-sidebar"
+         data-static-class="position-relative z-index-1 flex-grow max-width-xxxxs border-right"
+         id="sidebar">
+    <div class="sidebar__panel">
+      <header class="sidebar__header z-index-2">
+        <h1 class="text-md text-truncate" id="sidebarTitle">{{ tab.name }}</h1>
+
+        <button class="reset sidebar__close-btn js-sidebar__close-btn js-tab-focus">
+          {{ icons('times', '', {'title': 'Закрыть панель'}) }}
+        </button>
+      </header>
+
+      <div aria-label="{{ tab.name }}" class="position-relative z-index-1">
+        {#  start sidebar content  #}
+        <nav class="sidenav padding-y-sm text-sm@md js-sidenav">
+          <div class="sidenav__label margin-bottom-xxxs">
+            <span class="text-sm color-contrast-medium">{{ tab.name }}</span>
+          </div>
+
+          {% macro sidenav_item(item) %}
+            <li class="sidenav__item">
+              <a class="sidenav__link" href="/admin/{{ item.url }}"
+                 aria-current="{{ 'page' if item.current else 'false' }}">
+                <span class="sidenav__text">{{ item.name }}</span>
+              </a>
+            </li>
+          {% endmacro %}
+
+          <ul class="sidenav__list">
+            {% for g in tab %}
+              {% if g.items %}
+                <li class="sidenav__item{{ ' sidenav__item--expanded' if g.expanded else '' }}">
+                  <a class="sidenav__link">
+                    {% if g.icon %}
+                      {{ icons(g.icon, 'sidenav__icon', {'aria-hidden': "true"}) }}
+                    {% endif %}
+                    <span class="sidenav__text">{{ g.name }}</span>
+                  </a>
+
+                  <button aria-label="Toggle sub navigation"
+                          class="reset sidenav__sublist-control sidenav__item--expanded js-sidenav__sublist-control js-tab-focus">
+                    {{ icons("caret-right") }}
+                  </button>
+
+                  <ul class="sidenav__list">
+                    {% for i in g %}
+                      {{ sidenav_item(i) }}
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% else %}
+                {{ sidenav_item(g) }}
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </nav>
+        {#  end sidebar content  #}
+      </div>
+    </div>
+  </aside>
+
+  <main class="position-relative z-index-1 flex-grow">
+    <div class="padding-lg container max-width-adaptive-md height-100vh">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+</div>
+
+<script src="/js/scripts.min.js"></script>
+</body>
+</html>

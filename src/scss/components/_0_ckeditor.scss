@@ -1,0 +1,60 @@
+:root {
+  --ck-image-style-spacing: 1.5em;
+}
+
+figure.image {
+  display: table;
+  clear: both;
+  text-align: center;
+  margin: 1em auto;
+}
+figure.image > img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  min-width: 50px;
+}
+
+figure.image > figcaption {
+  display: table-caption;
+  caption-side: bottom;
+  word-break: break-word;
+  color: #333333;
+  background-color: #f7f7f7;
+  padding: 0.6em;
+  font-size: 0.75em;
+  outline-offset: -1px;
+}
+
+figure.image.image_resized {
+  max-width: 100%;
+  display: block;
+  box-sizing: border-box;
+}
+figure.image.image_resized img {
+  width: 100%;
+}
+figure.image.image_resized > figcaption {
+  display: block;
+}
+
+
+figure.image-style-side, figure.image-style-align-left, figure.image-style-align-center, figure.image-style-align-right {
+  max-width: 50%;
+}
+figure.image-style-side {
+  float: right;
+  margin-left: var(--ck-image-style-spacing);
+}
+figure.image-style-align-left {
+  float: left;
+  margin-right: var(--ck-image-style-spacing);
+}
+figure.image-style-align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+figure.image-style-align-right {
+  float: right;
+  margin-left: var(--ck-image-style-spacing);
+}

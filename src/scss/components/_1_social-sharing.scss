@@ -1,0 +1,42 @@
+/* --------------------------------
+
+File#: _1_social-sharing
+Title: Social Sharing
+Descr: Social sharing plugin
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.sharebar {}
+
+.sharebar__btn {
+  display: inline-block;
+  padding: var(--space-sm);
+  background: var(--color-contrast-lower);
+  border-radius: 50%;
+  transition: .2s;
+
+  .icon {
+    display: block;
+    color: var(--color-contrast-high);
+    transition: color .2s;
+    font-size: 1.2em;
+  }
+
+  &:hover {
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-sm);
+
+    .icon {
+      color: var(--color-primary);
+    }
+
+    &[data-social="twitter"] .icon {color: #1DA1F2};
+    &[data-social="facebook"] .icon {color: #3b5998};
+    &[data-social="vk"] .icon {color: #4c75a3};
+    &[data-social="ok"] .icon {color: #ed812b};
+    &[data-social="telegram"] .icon {color: #0088cc};
+    &[data-social="whatsapp"] .icon {color: #43d854};
+    &[data-social="viber"] .icon {color: #665CAC};
+  }
+}

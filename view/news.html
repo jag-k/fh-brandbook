@@ -1,0 +1,37 @@
+{% extends 'layout/index.html' %}
+
+{% block content %}
+
+  <div class="container max-width-adaptive">
+
+    <section class="container max-width-adaptive margin-y-md">
+      <div class="text-component margin-bottom-sm">
+        <h1>Новости</h1>
+      </div>
+      <div class="margin-x-auto">
+        {% for story in data %}
+          {% for _ in range(10) %}
+            {{ news_post(story, 2, config.DATE_FORMAT) }}
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

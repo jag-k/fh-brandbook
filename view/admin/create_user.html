@@ -1,0 +1,35 @@
+{% extends 'layout/admin.html' %}
+{% from 'layout/components.html' import icons, modal %}
+
+{% block content %}
+  <div class="container max-width-adaptive">
+    <form action="" enctype="multipart/form-data" method="post">
+      <fieldset class="margin-bottom-md">
+        <legend class="form-legend">Новый администратор</legend>
+
+        <div class="grid gap-sm">
+          <div class="col-6@md">
+            <label class="form-label margin-bottom-xxs" for="name">Имя</label>
+            <input class="form-control width-100%" id="name" name="name" placeholder="Иванов Иван Иванович" type="text"
+                   autocomplete="name">
+          </div>
+
+          <div class="col-6@md">
+            <label class="form-label margin-bottom-xxs" for="login">Логин</label>
+            <input class="form-control width-100%" id="login" name="login" pattern="[A-Za-z\-_]{2,}"
+                   placeholder="Ivan_Ivanov" required type="text" autocomplete="nickname">
+          </div>
+
+          <div>
+            <label class="form-label margin-bottom-xxs" for="password">Пароль</label>
+            <input class="form-control width-100%" id="password" autocomplete="new-password" name="password" required
+                   type="password">
+          </div>
+        </div>
+      </fieldset>
+      <div>
+        <button class="btn btn--primary">Создать администратора</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

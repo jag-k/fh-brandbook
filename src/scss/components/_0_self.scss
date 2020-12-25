@@ -1,0 +1,90 @@
+:root {
+  --max-lines: 5;
+}
+
+.payment-block {
+  max-width: 180px;
+  border: 2px solid #ECECEE;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px 10px 10px 0;
+}
+
+.payment-block-header {
+  // font-size: 15px;
+  color: #342538;
+  margin: 0 0 10px 0;
+}
+
+.payment-block-price {
+  font-size: 15px;
+  color: #8E8E9D;
+}
+
+.carousel__control--button {
+  @extend .carousel__control;
+
+  width: 100% !important;
+  border-radius: 50em !important;
+
+  padding: var(--space-sm);
+  text-decoration: none;
+  cursor: pointer;
+
+}
+
+.big-card {
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 64px 80px;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: var(--max-lines);
+  -webkit-box-orient: vertical;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+}
+
+.dir-item {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 8px 8px #0000001a;
+  padding: 64px 80px;
+  margin: 0 0 30px 0;
+}
+
+
+.simple_btn {
+  text-decoration: none;
+  padding: val(--space-xs);
+  text-align: center;
+  border-radius: 50em;
+  color: val(--color-contrast-higth);
+
+  &:hover:not(.simple_btn--selected) {
+    background-color: lightness(var(--color-contrast-lower), 0.98);
+  }
+
+  &:focus {
+    z-index: 1;
+    outline: none;
+    box-shadow: 0 0 0 2px alpha(var(--color-primary), 0.2);
+  }
+}
+
+.simple_btn--selected {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    box-shadow: var(--shadow-sm);
+}
+
+.blog {
+  transition: all 0.3s ease-out; // note that we're transitioning flex, not height!
+}
+
+.blog__hidden {
+  display: none;
+}

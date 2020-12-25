@@ -1,0 +1,37 @@
+[class*="aspect-ratio"] > :first-child {
+  width: 100%;
+}
+[class*="aspect-ratio"] > img {
+  height: auto;
+}
+@supports (--custom:property) {
+  [class*="aspect-ratio"] {
+    position: relative;
+  }
+  [class*="aspect-ratio"]::before {
+    content: "";
+    display: block;
+    padding-bottom: calc(100% / (var(--aspect-ratio)));
+  }
+  [class*="aspect-ratio"] > :first-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+}
+
+.aspect-ratio {
+  &__16-9 {
+    --aspect-ratio: 16/9;
+  }
+  &__16-10 {
+    --aspect-ratio: 16/10;
+  }
+  &__4-3 {
+    --aspect-ratio: 4/3;
+  }
+  &__1-1 {
+    --aspect-ratio: 1/1;
+  }
+}

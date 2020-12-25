@@ -1,0 +1,139 @@
+{% extends 'layout/index.html' %}
+{#
+hero
+about
+directions
+Q&A
+Blog
+#}
+{% block content %}
+  {# Hero #}
+  <section class="hero padding-y-xxl margin-bottom-sm" style="background-image: url(/img/main_page/background.jpg);">
+    <div class="container max-width-adaptive-lg">
+      <div class="max-width-xs">
+        <div class="text-component margin-bottom-sm">
+          <h1>{{ main_settings.header }}</h1>
+          <p>{{ main_settings.subheader }}</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-sm">
+          <ul class="socials__btns flex flex-center gap-sm flex-wrap">
+            {% set soc = settings.get('socials', {}) %}
+
+            {% if soc.vk %}
+              <li>
+                <a href="{{ soc.vk }}">
+                  {{ icons('vk') }}
+                  {{ soc.vk }}
+                  {{ soc.vk.adwad }}
+                  {{ soc.vk.adwad.dawdaw }}
+                </a>
+              </li>
+            {% endif %}
+
+            {% if soc.viber %}
+              <li>
+                <a href="viber://chat?number=+{{ soc.viber }}">
+                  {{ icons('viber') }}
+                </a>
+              </li>
+            {% endif %}
+
+            {% if soc.whatsapp %}
+              <li>
+                <a href="https://wa.me/{{ soc.whatsapp }}">
+                  {{ icons('whatsapp') }}
+                </a>
+              </li>
+            {% endif %}
+
+            {% if soc.mail %}
+              <li>
+                <a href="mailto:{{ soc.mail }}">
+                  {{ icons('envelope') }}
+                </a>
+              </li>
+            {% endif %}
+
+            {% if soc.tel %}
+              <li>
+                <a href="tel:+{{ soc.tel }}">
+                  {{ icons('phone-alt') }}
+                </a>
+              </li>
+            {% endif %}
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# Last News #}
+  {% if news %}
+    {% set ln = news[-1] %}
+    <section class="container max-width-adaptive margin-bottom-0 big-card choose-block
+        zindex-1 position-relative" style="transform: translate(0, -4em);">
+      <div class="flex flex-column flex-row@lg flex-gap-md">
+        <div class="col-4@lg col-12 margin-bottom-md">
+          <h2 class="text-bold text-lg margin-bottom-sm">Последняя новость</h2>
+          <a class="choose-btn width-100%" href="/news">Все новости</a>
+        </div>
+        <div class="col-3@lg col-12">
+          <a aria-label="{{ ln.title }}" class="block text-decoration-none radius-md"
+             href="/news/{{ ln.id }}">
+            <img class="aspect-ratio__16-9 radius-md shadow-md width-100%" alt="{{ ln.title }}" src="{{ ln.image }}">
+          </a>
+        </div>
+        <div class="col-6@lg col-12 text-component">
+            <h3 class="text-bold">
+              <a class="text-decoration-none color-contrast-high" href="/news/{{ ln.id }}">
+                {{ ln.title }}
+              </a>
+            </h3>
+            <p class="color-contrast-medium text-sm">
+              <a class="text-decoration-none color-contrast-medium" href="/news/{{ ln.id }}">
+                {{ ln.description }}
+              </a>
+            </p>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% if about %}
+    {# About Me #}
+    <section class="container max-width-adaptive margin-bottom-md">
+      <div class="flex flex-column-reverse flex-column">
+        <h2 class="max-width-adaptive-sm margin-bottom-xs">{{ about.header }}</h2>
+        <h3 class="color-contrast-low margin-bottom-xs">{{ about.subheader }}</h3>
+      </div>
+      <div class="container max-width-adaptive text-component">
+        {{ about.content }}
+      </div>
+    </section>
+  {% endif %}
+
+  {% set last_news = news[-4:-1] %}
+  {% if last_news %}
+    {% set col = 12 // (last_news|length) %}
+    <section class="container max-width-adaptive margin-y-md">
+      <div class="margin-bottom-sm">
+        <p class="color-contrast-low margin-bottom-xs">О том, что действительно важно</p>
+        <h3 class="max-width-adaptive-sm margin-bottom-xs">
+          Предыдущие статьи
+        </h3>
+        <a href="/news">Читать все новости</a>
+      </div>
+
+      <div class="grid gap-md@md margin-x-auto">
+        {% for story in last_news|reverse %}
+          <div class="col-{{ col }}@md margin-bottom-0@md margin-bottom-md">
+            {{ news_post(story, 1, config.DATE_FORMAT) }}
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+{% endblock %}
