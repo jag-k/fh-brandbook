@@ -1,5 +1,5 @@
-### "Компиляция" проекта
+### Сборка проекта
 
- - "Компиляция" стилей: `npm run style`
- - "Компиляция" [CKEditor5](https://ckeditor.com/ckeditor-5/): `npm run editor`
- - "Компиляция" всего проекта: `npm run build`
+ - Сборка стилей: `npm run codyframe`
+ - Сборка всего проекта: `npm run build`
+ - Запуск вотчера: `npm run watcher`

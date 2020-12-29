@@ -14,8 +14,6 @@ var gzip = require('gulp-gzip');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
-// var through = require('through2');
-var svg = require("./svg_sprites")
 
 // js file paths
 var utilJsPath = 'src/js'; // util.js path - you may need to update this if including the framework as external node module
@@ -25,7 +23,6 @@ var scriptsJsPath = 'public/js'; //folder for final scripts.js/scripts.min.js fi
 // css file paths
 var cssFolder = 'public/css'; // folder for final style.css/style-custom-prop-fallbac.css files
 var scssFilesPath = 'src/scss/**/*.scss'; // scss files to watch
-var htmlFilesPath = 'view/**/*.html'; // scss files to watch
 
 
 gulp.task('sass', function () {
@@ -34,8 +31,18 @@ gulp.task('sass', function () {
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(postcss([autoprefixer()]))
     .pipe(gulp.dest(cssFolder))
+    .pipe(gzip())
+    .pipe(gulp.dest(cssFolder));
+});
+
+gulp.task('sass-fallback', function () {
+  return gulp.src(scssFilesPath)
+    .pipe(sassGlob())
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(postcss([autoprefixer()]))
     .pipe(rename('style-fallback.css'))
     .pipe(postcss([cssvariables(), calc()]))
+    .pipe(gulp.dest(cssFolder))
     .pipe(gzip())
     .pipe(gulp.dest(cssFolder));
 });
@@ -46,28 +53,17 @@ gulp.task('scripts', function () {
     .pipe(gulp.dest(scriptsJsPath))
     .pipe(rename('scripts.min.js'))
     .pipe(uglify())
-    // .pipe(gzip())
+    .pipe(gulp.dest(scriptsJsPath))
+    .pipe(gzip())
     .pipe(gulp.dest(scriptsJsPath))
 });
 
-gulp.task('svg', function () {
-  var icons = {
-    "wrench": true,
-    "newspaper": true,
-    "file-alt": true,
-  }
-  return gulp.src(htmlFilesPath)
-    .pipe(svg.count(icons))
-    .on('end', svg.build('src/sprites/icons.svg', 'public/sprites/icons.svg', icons));
-});
 
-gulp.task('codyframe', gulp.parallel(['sass', 'scripts', 'svg']));
+gulp.task('codyframe', gulp.parallel(['sass', 'sass-fallback', 'scripts']));
 
 gulp.task('watch', gulp.series(['codyframe'], function () {
-  gulp.watch(scssFilesPath, gulp.series(['sass'])).on('change', reload);
+  gulp.watch(scssFilesPath, gulp.series(['sass', 'sass-fallback'])).on('change', reload);
   gulp.watch(componentsJsPath, gulp.series(['scripts'])).on('change', reload);
-
-  gulp.watch(htmlFilesPath, gulp.series(['svg'])).on('change', reload);
 
   gulp.watch(["db/db.sqlite3", '**/*.py']).on('change', reload);
 }));
@@ -76,7 +72,7 @@ gulp.task('watch', gulp.series(['codyframe'], function () {
 gulp.task('browser-sync', gulp.series(function () {
   browserSync({
     notify: false,
-    proxy: "127.0.0.1:8080",
+    server: '.'
   })
 }));
 

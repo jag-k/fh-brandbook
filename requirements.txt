@@ -1,5 +1,0 @@
-bottle~=0.12.18
-htmlmin~=0.1.12
-git+git://github.com/ponyorm/pony.git@orm-migrations#egg=pony
-gunicorn
-pymysql
