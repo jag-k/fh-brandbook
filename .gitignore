@@ -554,5 +554,5 @@ package-lock.json
 # If we use Vercel
 
 public/
-!public/images/
-!public/fonts/
+!public/images/**/*
+!public/fonts/**/*
