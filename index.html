@@ -14,11 +14,9 @@
     }
   }</script>
   <title>Fox Hustle Brandbook</title>
-  <!--  <meta content="{{ meta_description }}" name="description">-->
-  <!--  <meta content="{{ settings.get('meta', {}).get('keywords', '') }}" name="keywords">-->
 
-  <link href="/public/images/logo.svg" rel="icon" type="image/svg+xml" sizes="any">
-  <link href="/public/images/logo.svg" rel="apple-touch-icon" type="image/svg+xml" sizes="any">
+  <link href="/public/images/logo.svg" rel="icon" sizes="any" type="image/svg+xml">
+  <link href="/public/images/logo.svg" rel="apple-touch-icon" sizes="any" type="image/svg+xml">
 
   <meta content="ru_RU" property="og:locale">
   <meta content="Fox Hustle Brandbook" property="og:site_name">
@@ -36,7 +34,7 @@
   <meta content="1680" property="og:image:width"/>
   <meta content="1050" property="og:image:height"/>
 
-  <!--  <meta content="{{ meta_description }}" property="og:description">-->
+  <meta content="Брендбук сообщества Fox Hustle" property="og:description">
 
 </head>
 
@@ -124,7 +122,7 @@
   <div class="sample__card">
     <div class="sample__logo">
       <div class="sample__img">
-        <img src="public/images/logo.svg" class="logo__300" alt="">
+        <img alt="" class="logo__300" src="public/images/logo.svg">
       </div>
     </div>
     <div class="sample__text">
@@ -134,7 +132,7 @@
   <div class="sample__card">
     <div class="sample__logo">
       <div class="sample__img sample__bg--default">
-        <img src="public/images/logo/default.svg" class="logo__300" alt="">
+        <img alt="" class="logo__300" src="public/images/logo/default.svg">
       </div>
     </div>
     <div class="sample__text">
@@ -144,7 +142,7 @@
   <div class="sample__card">
     <div class="sample__logo">
       <div class="sample__img sample__bg--mono">
-        <img src="public/images/logo/mono.svg" class="logo__300" alt="">
+        <img alt="" class="logo__300" src="public/images/logo/mono.svg">
       </div>
     </div>
     <div class="sample__text">
@@ -154,7 +152,7 @@
   <div class="sample__card">
     <div class="sample__logo">
       <div class="sample__img sample__bg--b-n-w">
-        <img src="public/images/logo/bnw.svg" class="logo__300" alt="">
+        <img alt="" class="logo__300" src="public/images/logo/bnw.svg">
       </div>
     </div>
     <div class="sample__text">
@@ -165,8 +163,74 @@
 
 <section class="section">
   <h2>Недопустимые варианты логотипа</h2>
+  <div class="grid__invalid">
+    <figure class="grid__figure"><img alt="" class="grid__img" src="public/images/invalid/logo-1.svg">
+      <figcaption class="grid__text">Изменённая геометрия</figcaption>
+    </figure>
+    <figure class="grid__figure"><img alt="" class="grid__img" src="public/images/invalid/logo-2.svg">
+      <figcaption class="grid__text">Нефирменный цвет</figcaption>
+    </figure>
+    <figure class="grid__figure"><img alt="" class="grid__img" src="public/images/invalid/logo-3.svg">
+      <figcaption class="grid__text">Контурный логотип</figcaption>
+    </figure>
+    <figure class="grid__figure"><img alt="" class="grid__img" src="public/images/invalid/logo-4.svg">
+      <figcaption class="grid__text">Визуальные эффекты</figcaption>
+    </figure>
+    <figure class="grid__figure"><img alt="" class="grid__img" src="public/images/invalid/logo-5.svg">
+      <figcaption class="grid__text">Отсутствие подложки или инверсия логотипа</figcaption>
+    </figure>
+    <figure class="grid__figure"><img alt="" class="grid__img" src="public/images/invalid/logo-6.svg">
+      <figcaption class="grid__text">Наложение узоров</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Типографика</h2>
+  <p>Во всех материалах Fox Hustle рекомендуется использовать семейство шрифтов Museo Sans Cyrl.</p>
+
+  <section class="figure">
+    <figure>
+      <img alt="" src="public/images/typography/header.svg">
+      <figcaption>Заголовок</figcaption>
+    </figure>
+    <figure>
+      <img alt="" src="public/images/typography/text.svg">
+      <figcaption>Основной текст</figcaption>
+    </figure>
+  </section>
+</section>
+
+<section class="section">
+  <h2>Правильное написание</h2>
+  <p>Fox Hustle стоит писать раздельно, без кавычек и используя только латинские символы
+    <br>При сокращении используется аббревиатура «FH».</p>
+
+  <img alt="" src="public/images/typography/Fox_Hustle.svg">
+  <p>или</p>
+  <img alt="" src="public/images/typography/FH.svg">
+</section>
+
+<section class="section">
+  <h2>Оформление ссылок</h2>
+
+  <section class="figure">
+    <figure>
+      <img alt="" class="logo logo__250" src="public/images/logo/bnw.svg">
+      <img alt="" class="logo logo__250" src="public/images/qr/Theme=Dark,%20Type=Colored.svg">
+    </figure>
+    <figure>
+      <img alt="" class="logo logo__250" src="public/images/logo/default.svg">
+      <img alt="" class="logo logo__250" src="public/images/qr/Theme=Light,%20Type=Mono.svg">
+    </figure>
+  </section>
 
 </section>
+
+
+<footer class="section">
+  <h2>Фыр-фыр 🦊</h2>
+</footer>
 
 <script src="public/js/scripts.min.js"></script>
 </body>
