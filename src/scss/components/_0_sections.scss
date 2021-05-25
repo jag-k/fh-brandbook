@@ -97,7 +97,7 @@ figure {
   }
 }
 
-.section__colored--mark:not([class*='color-']) {
+.section__colored--mark:not([class*='color-black']) {
   color: var(--color-white);
 }
 
